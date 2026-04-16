@@ -24,31 +24,6 @@ Prerequisites
 - .NET 10 SDK
 - SQL Server LocalDB (included with Visual Studio)
 
-Setup Steps
-
-1. **Clone the repository**
-   ```
-   git clone https://github.com/YOUR_USERNAME/EventEase.git
-   cd EventEase
-   ```
-
-2. **Restore NuGet packages**
-   Open the solution in Visual Studio — packages restore automatically, or run:
-   ```
-   dotnet restore
-   ```
-
-3. **Apply database migrations**
-   In the Package Manager Console (Tools → NuGet Package Manager → Package Manager Console):
-   ```
-   Update-Database
-   ```
-   This creates the `EventEaseDb` LocalDB database and seeds sample data.
-
-4. **Run the application**
-   Press `F5` or `Ctrl+F5` in Visual Studio (IIS Express or Kestrel).
-   Navigate to: `https://localhost:xxxx`
-
 ---
 
 Entity-Relationship Diagram (ERD)
