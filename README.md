@@ -1,4 +1,4 @@
-[README.md](https://github.com/user-attachments/files/26782491/README.md)
+
 EventEase – Venue Booking System
 --- CLDV6211 Cloud Development A | Part 1 Submission
 
