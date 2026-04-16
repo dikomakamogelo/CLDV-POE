@@ -1,18 +1,25 @@
-using EventEase.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using EventEase.Data;
+using EventEase.Models;
 using System.Diagnostics;
 
 namespace EventEase.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly ApplicationDbContext _context;
+
+        public HomeController(ApplicationDbContext context)
         {
-            return View();
+            _context = context;
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Index()
         {
+            ViewBag.VenueCount = await _context.Venues.CountAsync();
+            ViewBag.EventCount = await _context.Events.CountAsync();
+            ViewBag.BookingCount = await _context.Bookings.CountAsync();
             return View();
         }
 
