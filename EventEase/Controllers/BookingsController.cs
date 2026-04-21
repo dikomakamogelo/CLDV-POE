@@ -45,11 +45,15 @@ namespace EventEase.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EventId,VenueId,BookingDate,CustomerName,CustomerEmail")] Booking booking)
         {
+            
+            ModelState.Remove("BookingReference");
+
             if (ModelState.IsValid)
             {
                 var conflict = await _context.Bookings
                     .AnyAsync(b => b.VenueId == booking.VenueId
                               && b.BookingDate.Date == booking.BookingDate.Date);
+
                 if (conflict)
                 {
                     ModelState.AddModelError(string.Empty, "This venue is already booked on the selected date. Please choose a different date or venue.");
@@ -57,12 +61,14 @@ namespace EventEase.Controllers
                     ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueName", booking.VenueId);
                     return View(booking);
                 }
+
                 booking.BookingReference = $"BK-{DateTime.Now.Year}-{Guid.NewGuid().ToString()[..6].ToUpper()}";
                 _context.Add(booking);
                 await _context.SaveChangesAsync();
                 TempData["Success"] = $"Booking '{booking.BookingReference}' created successfully.";
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName", booking.EventId);
             ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueName", booking.VenueId);
             return View(booking);
