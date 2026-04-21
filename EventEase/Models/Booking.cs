@@ -7,7 +7,6 @@ namespace EventEase.Models
     {
         public int BookingId { get; set; }
 
-        [Required]
         [Display(Name = "Booking Reference")]
         [StringLength(20)]
         public string BookingReference { get; set; } = string.Empty;
