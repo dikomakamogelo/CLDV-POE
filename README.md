@@ -117,3 +117,6 @@ Key Features (Part 1)
 
 GitHub
 This repository follows the required version control workflow. Commits are made incrementally as features are developed.
+
+YouTube
+Uploaded Youtube Delisted Video Link - https://youtu.be/5UwIKVCNoVs (Part 1)
